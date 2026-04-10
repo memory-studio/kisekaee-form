@@ -140,21 +140,16 @@ const App = () => {
         images: resizedImages
       };
 
-      const response = await fetch(GAS_WEBAPP_URL, {
+      await fetch(GAS_WEBAPP_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload)
       });
 
-      if (!response.ok) throw new Error(`サーバーエラー: ${response.status}`);
-      const result = await response.json();
-      
-      if (result.result === 'success') {
-        setReceiptNumber(generateReceipt());
-        setStep(4);
-      } else {
-        throw new Error(result.message || '不明なエラーが発生しました');
-      }
+      setReceiptNumber(generateReceipt());
+      setStep(4);
+
     } catch (error) {
       console.error("Submission Error:", error);
       setErrorMessage("送信に失敗しました。インターネット接続を確認して、もう一度お試しください。");
