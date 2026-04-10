@@ -53,7 +53,6 @@ const App = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeSample, setActiveSample] = useState('bg');
-  const [receiptNumber, setReceiptNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
@@ -111,14 +110,8 @@ const App = () => {
     reader.readAsDataURL(file);
   };
 
-  const generateReceipt = () => {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let result = 'M-';
     for (let i = 0; i < 6; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    return result;
-  };
 
   const submitForm = async () => {
     setIsSubmitting(true);
@@ -147,7 +140,6 @@ const App = () => {
         body: JSON.stringify(payload)
       });
 
-      setReceiptNumber(generateReceipt());
       setStep(4);
 
     } catch (error) {
@@ -356,25 +348,3 @@ const App = () => {
                 お写真を受け取りました。これからあなたの最愛の家族に合わせた最高の着せかえを制作いたします！
               </p>
             </div>
-            <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-full">
-              <p className="text-[10px] text-gray-400 uppercase font-black mb-1">受付番号</p>
-              <p className="text-lg font-mono font-bold text-slate-700">{receiptNumber}</p>
-            </div>
-            <button onClick={() => window.location.reload()}
-              className="text-pink-500 font-bold text-sm border-b-2 border-pink-500 pb-1">
-              TOPに戻る
-            </button>
-          </div>
-        )}
-      </main>
-
-      <div className="fixed bottom-6 right-6">
-        <a href="#" className="w-12 h-12 bg-[#06C755] text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
-          <MessageCircle className="w-6 h-6" />
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default App;
