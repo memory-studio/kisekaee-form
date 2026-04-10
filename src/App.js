@@ -3,7 +3,6 @@ import {
   Camera, 
   CheckCircle2, 
   ChevronRight, 
-  MessageCircle, 
   AlertCircle, 
   Send, 
   Smartphone, 
@@ -109,9 +108,6 @@ const App = () => {
     };
     reader.readAsDataURL(file);
   };
-
-    for (let i = 0; i < 6; i++) {
-    }
 
   const submitForm = async () => {
     setIsSubmitting(true);
@@ -348,3 +344,15 @@ const App = () => {
                 お写真を受け取りました。これからあなたの最愛の家族に合わせた最高の着せかえを制作いたします！
               </p>
             </div>
+            <button onClick={() => window.location.reload()}
+              className="text-pink-500 font-bold text-sm border-b-2 border-pink-500 pb-1">
+              TOPに戻る
+            </button>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default App;
